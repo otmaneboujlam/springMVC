@@ -1,13 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <!-- <link rel="stylesheet" th:href="@{/css/main.css}"/> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <meta charset="utf-8">
 <title>Personne</title>
 </head>
-<body>
-	<h1>Liste des Personnes</h1>
-	<button type="button" onclick="window.location='/person/create'">➕ Ajouter une Personne</button>
-	<table class="mainTable">
+<body class="container">
+	<h1 class="text-center">Liste des Personnes</h1>
+	<button type="button" class="btn btn-primary" onclick="window.location='/person/create'">Ajouter une Personne</button>
+	<table class="mainTable table table-striped">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -24,8 +25,8 @@
 				<td th:text="${personItem.getFirstname()}"/>
 				<td th:text="${personItem.getLastname()}"/>
 				<td th:text="${personItem.getAge()}"/>
-				<td><a th:href="@{'/person/update/' + ${personItem.getId()}}">Update</a></td>
-				<td><a th:href="@{'/person/delete/' + ${personItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
+				<td><a class="text-warning" th:href="@{'/person/update/' + ${personItem.getId()}}">Update</a></td>
+				<td><a class="text-danger" th:href="@{'/person/delete/' + ${personItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
