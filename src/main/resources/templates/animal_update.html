@@ -21,7 +21,7 @@
 	</nav>
 	<h1 class="text-center">Mise à jour d'un Animal</h1>
 	<form th:object="${updateAnimal}" th:action="@{/animal}" method="post">
-		<input  th:field="*{id}"/>
+		<input type="hidden" th:field="*{id}"/>
 		<div class="mb-3">
 			<label class="form-label" for="name">Name : </label>
 			<input class="form-control" type="text" th:field="*{name}" id="name"/>
