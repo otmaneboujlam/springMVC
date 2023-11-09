@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- <link rel="stylesheet" th:href="@{/css/main.css}"/> -->
+<meta charset="utf-8">
+<title>Species</title>
+</head>
+<body>
+	<h1 th:text="${species.getCommonName()}"/>
+	<table class="mainTable">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Common Name</th>
+				<th>Latin Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td th:text="${species.getId()}"/>
+				<td th:text="${species.getCommonName()}"/>
+				<td th:text="${species.getLatinName()}"/>
+			</tr>
+		</tbody>
+	</table>
+</body>

@@ -1,0 +1,46 @@
+package com.diginamic.BestiolesMVC.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.diginamic.BestiolesMVC.entity.Species;
+import com.diginamic.BestiolesMVC.repository.SpeciesRepository;
+
+@Controller
+@RequestMapping("/species")
+public class SpeciesController {
+
+	@Autowired
+	private SpeciesRepository speciesRepository;
+	
+	@GetMapping("")
+	public String listSpecies(Model model) {
+		List<Species> speciess = speciesRepository.findAll();
+		model.addAttribute("speciess", speciess);
+		return "species_list";
+	}
+	
+	@GetMapping("/{id}")
+	public String idSpecies(@PathVariable("id") Integer id, Model model) {
+		Optional<Species> species = speciesRepository.findById(id);
+		if(species.isPresent()) {
+			model.addAttribute("species", species.get());
+			return "species_id";
+		}
+		return "error";
+	}
+	
+	@GetMapping("/create")
+	public String createSpecies(Model model) {
+		model.addAttribute("newSpecies", new Species());
+		return "species_create";
+	}
+	
+}

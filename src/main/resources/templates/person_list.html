@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- <link rel="stylesheet" th:href="@{/css/main.css}"/> -->
+<meta charset="utf-8">
+<title>Personne</title>
+</head>
+<body>
+	<h1>Liste des Personnes</h1>
+	<table class="mainTable">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="personItem : ${persons}">
+				<td th:text="${personItem.getId()}"/>
+				<td th:text="${personItem.getFirstname()}"/>
+				<td th:text="${personItem.getLastname()}"/>
+				<td th:text="${personItem.getAge()}"/>
+			</tr>
+		</tbody>
+	</table>
+</body>

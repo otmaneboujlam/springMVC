@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- <link rel="stylesheet" th:href="@{/css/main.css}"/> -->
+<meta charset="utf-8">
+<title>Animal</title>
+</head>
+<body>
+	<h1>Liste des Animaux</h1>
+	<table class="mainTable">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Sex</th>
+				<th>Color</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="animalItem : ${animals}">
+				<td th:text="${animalItem.getId()}"/>
+				<td th:text="${animalItem.getName()}"/>
+				<td th:text="${animalItem.getSex()}"/>
+				<td th:text="${animalItem.getColor()}"/>
+			</tr>
+		</tbody>
+	</table>
+</body>
