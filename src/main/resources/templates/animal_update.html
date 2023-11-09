@@ -6,6 +6,19 @@
 <title>Animal</title>
 </head>
 <body class="container">
+	<nav class="sticky-top navbar navbar-expand-lg bg-body-tertiary">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/person">Peronne</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/animal">Animal</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/species">Species</a>
+        </li>
+      </ul>
+	</nav>
 	<h1 class="text-center">Mise à jour d'un Animal</h1>
 	<form th:object="${updateAnimal}" th:action="@{/animal}" method="post">
 		<input  th:field="*{id}"/>
