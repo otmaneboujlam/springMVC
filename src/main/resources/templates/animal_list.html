@@ -6,6 +6,7 @@
 </head>
 <body>
 	<h1>Liste des Animaux</h1>
+	<button type="button" onclick="window.location='/animal/create'">➕ Ajouter un Animal</button>
 	<table class="mainTable">
 		<thead>
 			<tr>
@@ -13,6 +14,8 @@
 				<th>Name</th>
 				<th>Sex</th>
 				<th>Color</th>
+				<th>Update</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,6 +24,8 @@
 				<td th:text="${animalItem.getName()}"/>
 				<td th:text="${animalItem.getSex()}"/>
 				<td th:text="${animalItem.getColor()}"/>
+				<td><a th:href="@{'/animal/update/' + ${animalItem.getId()}}">Update</a></td>
+				<td><a th:href="@{'/animal/delete/' + ${animalItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>

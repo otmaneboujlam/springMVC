@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginamic.BestiolesMVC.entity.Animal;
@@ -47,6 +48,26 @@ public class AnimalController {
 		model.addAttribute("newAnimal", new Animal());
 		model.addAttribute("species", speciesRepository.findAll(Sort.by(Sort.Direction.ASC, "commonName")));
 		return "animal_create";
+	}
+	
+	@GetMapping("/update/{id}")
+	public String updateAnimal(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("updateAnimal", animalRepository.findById(id));
+		model.addAttribute("species", speciesRepository.findAll(Sort.by(Sort.Direction.ASC, "commonName")));
+		return "animal_update";
+	}
+	
+	@PostMapping("")
+	public String createOrUpdateAnimal(Animal animal) {
+		animalRepository.save(animal);
+		return "redirect:/animal";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteAnimal(@PathVariable("id") Integer id) {
+		Optional<Animal> animalToDelete = animalRepository.findById(id);
+		animalToDelete.ifPresent(animal -> animalRepository.delete(animal));
+		return "redirect:/animal";
 	}
 	
 }

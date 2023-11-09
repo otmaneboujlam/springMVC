@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -25,8 +24,7 @@ public class Species {
 	@Column(length = 200, nullable = false)
 	private String latinName;
 	
-	@OneToMany
-	@JoinColumn(name = "species_id")
+	@OneToMany(mappedBy = "species")
 	private List<Animal> animals = new ArrayList<Animal>();
 
 	public String getCommonName() {
@@ -55,6 +53,10 @@ public class Species {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override

@@ -6,12 +6,15 @@
 </head>
 <body>
 	<h1>Liste des Espèces</h1>
+	<button type="button" onclick="window.location='/species/create'">➕ Ajouter une Espèce</button>
 	<table class="mainTable">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Common Name</th>
 				<th>Latin Name</th>
+				<th>Update</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,6 +22,8 @@
 				<td th:text="${speciesItem.getId()}"/>
 				<td th:text="${speciesItem.getCommonName()}"/>
 				<td th:text="${speciesItem.getLatinName()}"/>
+				<td><a th:href="@{'/species/update/' + ${speciesItem.getId()}}">Update</a></td>
+				<td><a th:href="@{'/species/delete/' + ${speciesItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
