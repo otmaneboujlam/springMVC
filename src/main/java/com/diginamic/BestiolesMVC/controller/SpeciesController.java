@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.diginamic.BestiolesMVC.entity.Species;
 import com.diginamic.BestiolesMVC.repository.SpeciesRepository;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/species")
@@ -40,18 +43,21 @@ public class SpeciesController {
 	
 	@GetMapping("/create")
 	public String createSpecies(Model model) {
-		model.addAttribute("newSpecies", new Species());
+		model.addAttribute("species", new Species());
 		return "species_create";
 	}
 	
 	@GetMapping("/update/{id}")
 	public String updateSpecies(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("updateSpecies", speciesRepository.findById(id));
+		model.addAttribute("species", speciesRepository.findById(id));
 		return "species_update";
 	}
 	
 	@PostMapping("")
-	public String createOrUpdateSpecies(Species species) {
+	public String createOrUpdateSpecies(@Valid Species species, BindingResult result) {
+		if(result.hasErrors()) {
+			return species.getId() == null ? "species_create" : "species_update";
+		}
 		speciesRepository.save(species);
 		return "redirect:/species";
 	}
@@ -64,7 +70,7 @@ public class SpeciesController {
 				speciesRepository.delete(speciesToDelete.get());
 			} catch (Exception e) {
 				model.addAttribute("error", e);
-				return "/errorDelete";
+				return "errorDelete";
 			}
 			
 		}

@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Species {
@@ -19,9 +21,13 @@ public class Species {
 	private Integer id;
 	
 	@Column(length = 50, nullable = false)
+	@NotBlank
+	@Size(max = 50)
 	private String commonName;
 
 	@Column(length = 200, nullable = false)
+	@NotBlank
+	@Size(max = 200)
 	private String latinName;
 	
 	@OneToMany(mappedBy = "species")

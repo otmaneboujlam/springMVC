@@ -10,6 +10,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Animal {
@@ -20,15 +23,21 @@ public class Animal {
 	private Integer id;
 	
 	@Column(length = 50, columnDefinition = "varchar(50) default NULL")
+	@Size(max = 50)
 	private String color;
 	
 	@Column(length = 50, nullable = false)
+	@NotBlank
+	@Size(max = 50)
 	private String name;
 	
 	@Column(length = 255, nullable = false)
+	@NotBlank
+	@Size(max = 255)
 	private String sex;
 	
 	@ManyToOne
+	@NotNull
 	private Species species;
 	
 	@ManyToMany(mappedBy = "animals", cascade = CascadeType.ALL)

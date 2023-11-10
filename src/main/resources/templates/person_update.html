@@ -20,19 +20,22 @@
       </ul>
 	</nav>
 	<h1 class="text-center">Mise à jour d'une Personne</h1>
-	<form th:object="${updatePerson}" th:action="@{/person}" method="post">
+	<form th:object="${person}" th:action="@{/person}" method="post">
 		<input type="hidden" th:field="*{id}"/>
 		<div class="mb-3">
 			<label class="form-label" for="firstname">First name : </label>
 			<input class="form-control" type="text" th:field="*{firstname}" id="firstname"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Error</span>
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="lasttname">Last name : </label>
 			<input class="form-control" type="text" th:field="*{lastname}" id="lastname"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Error</span>
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="age">Age : </label>
 			<input class="form-control" type="text" th:field="*{age}" id="age"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Error</span>
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="animals">Animaux :</label>

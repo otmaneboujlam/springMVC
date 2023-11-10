@@ -12,6 +12,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Person {
@@ -25,9 +28,13 @@ public class Person {
 	private Integer age;
 	
 	@Column(length = 50, nullable = false)
+	@NotBlank
+	@Size(max = 50)
 	private String firstname;
 	
 	@Column(length = 50, nullable = false)
+	@NotBlank
+	@Size(max = 50)
 	private String lastname;
 
 	@ManyToMany(cascade = CascadeType.ALL)

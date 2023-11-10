@@ -20,15 +20,17 @@
       </ul>
 	</nav>
 	<h1 class="text-center">Créer une espèce</h1>
-	<form th:object="${newSpecies}" th:action="@{/species}" method="post">
+	<form th:object="${species}" th:action="@{/species}" method="post">
 		<input type="hidden" th:field="*{id}"/>
 		<div class="mb-3">
 			<label class="form-label" for="commonName">Common Name : </label>
 			<input class="form-control" type="text" th:field="*{commonName}" id="commonName"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('commonName')}" th:errors="*{commonName}">Error</span>
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="latinName">latin Name : </label>
 			<input class="form-control" type="text" th:field="*{latinName}" id="latinName"/>
+			<span class="text-danger" th:if="${#fields.hasErrors('latinName')}" th:errors="*{latinName}">Error</span>
 		</div>
 		<div class="mb-3">
 			<input type="submit" class="button btn btn-success" value="Sauver"/>
