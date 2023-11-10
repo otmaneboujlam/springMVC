@@ -8,6 +8,9 @@
 <body class="container">
 	<nav class="sticky-top navbar navbar-expand-lg bg-body-tertiary">
       <ul class="navbar-nav">
+		<li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/person">Peronne</a>
         </li>
@@ -29,7 +32,10 @@
 		</div>
 		<div class="mb-3">
 			<label class="form-label" for="sex">Sex : </label>
-			<input class="form-control" type="text" th:field="*{sex}" id="sex"/>
+			<select class="form-control" type="text" th:field="*{sex}" id="sex">
+				<option value="M">M</option>
+				<option value="F">F</option>
+			</select>
 			<span class="text-danger" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Error</span>
 		</div>
 		<div class="mb-3">
@@ -40,7 +46,7 @@
 		<div class="mb-3">
 			<label class="form-label" for="species">Espèce :</label>
 			<select class="form-select" th:field="*{species}" id="species">
-				<option th:each="sp:${species}" th:value="${sp.getId()}" th:text="${sp.getCommonName}"></optio>
+				<option th:each="sp:${species}" th:value="${sp.getId()}" th:text="${sp.getCommonName}"></option>
 			</select>
 		</div>
 		<div class="mb-3">
