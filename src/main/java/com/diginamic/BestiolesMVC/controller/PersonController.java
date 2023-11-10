@@ -77,5 +77,17 @@ public class PersonController {
 		personToDelete.ifPresent(person -> personRepository.delete(person));
 		return "redirect:/person";
 	}
+	
+	@GetMapping("/deletePersons")
+	public String deletePersons() {
+		personRepository.deletePersonHasNoAnimal();
+		return "redirect:/person";
+	}
+	
+	@GetMapping("/createPersons")
+	public String createPersons() {
+		personRepository.createPersons(15);
+		return "redirect:/person";
+	}
 
 }

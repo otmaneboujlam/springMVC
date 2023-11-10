@@ -21,6 +21,7 @@ public class PersonRepositoryCustomImpl implements PersonRepositoryCustom {
 	}
 
 	@Override
+	@Transactional
 	public void createPersons(Integer nombrePerson) {
 		Faker faker = new Faker();
 		for(int i=0; i<nombrePerson; i++) {

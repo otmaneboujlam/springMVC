@@ -2,7 +2,6 @@ package com.diginamic.BestiolesMVC.entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,7 +39,7 @@ public class Animal {
 	@NotNull
 	private Species species;
 	
-	@ManyToMany(mappedBy = "animals", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "animals")
 	private List<Person> persons;
 
 	public String getColor() {
