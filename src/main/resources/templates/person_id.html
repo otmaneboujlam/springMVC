@@ -19,8 +19,9 @@
         </li>
       </ul>
 	</nav>
-	<h1 class="text-center" th:text="${person.getFirstname() + ' ' + person.getLastname()}"/>
-	<table class="mainTable">
+	<h1 class="text-center">Détail</h1>
+	<h2>Personne</h2>
+	<table class="mainTable table table-striped">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -35,6 +36,27 @@
 				<td th:text="${person.getFirstname()}"/>
 				<td th:text="${person.getLastname()}"/>
 				<td th:text="${person.getAge()}"/>
+			</tr>
+		</tbody>
+	</table>
+	<h2>Animaux</h2>
+	<table class="mainTable table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Sex</th>
+				<th>Color</th>
+				<th>Detail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="animalItem : ${person.getAnimals()}">
+				<td th:text="${animalItem.getId()}"/>
+				<td th:text="${animalItem.getName()}"/>
+				<td th:text="${animalItem.getSex()}"/>
+				<td th:text="${animalItem.getColor()}"/>
+				<td><a class="text-info" th:href="@{'/animal/' + ${animalItem.getId()}}">Detail</a></td>
 			</tr>
 		</tbody>
 	</table>

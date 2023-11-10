@@ -28,6 +28,7 @@
 				<th>First name</th>
 				<th>Last name</th>
 				<th>Age</th>
+				<th>Detail</th>
 				<th>Update</th>
 				<th>Delete</th>
 			</tr>
@@ -38,6 +39,7 @@
 				<td th:text="${personItem.getFirstname()}"/>
 				<td th:text="${personItem.getLastname()}"/>
 				<td th:text="${personItem.getAge()}"/>
+				<td><a class="text-info" th:href="@{'/person/' + ${personItem.getId()}}">Detail</a></td>
 				<td><a class="text-warning" th:href="@{'/person/update/' + ${personItem.getId()}}">Update</a></td>
 				<td><a class="text-danger" th:href="@{'/person/delete/' + ${personItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
 			</tr>

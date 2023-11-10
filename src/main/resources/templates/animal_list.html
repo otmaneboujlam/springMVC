@@ -28,6 +28,7 @@
 				<th>Name</th>
 				<th>Sex</th>
 				<th>Color</th>
+				<th>Detail</th>
 				<th>Update</th>
 				<th>Delete</th>
 			</tr>
@@ -38,6 +39,7 @@
 				<td th:text="${animalItem.getName()}"/>
 				<td th:text="${animalItem.getSex()}"/>
 				<td th:text="${animalItem.getColor()}"/>
+				<td><a class="text-info" th:href="@{'/animal/' + ${animalItem.getId()}}">Detail</a></td>
 				<td><a class="text-warning" th:href="@{'/animal/update/' + ${animalItem.getId()}}">Update</a></td>
 				<td><a class="text-danger" th:href="@{'/animal/delete/' + ${animalItem.id}} "onclick="return confirm('Êtes-vous sûr ?')">Delete</a></td>
 			</tr>
