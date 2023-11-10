@@ -71,9 +71,16 @@ public class AnimalController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deleteAnimal(@PathVariable("id") Integer id) {
+	public String deleteAnimal(@PathVariable("id") Integer id, Model model) {
 		Optional<Animal> animalToDelete = animalRepository.findById(id);
-		animalToDelete.ifPresent(animal -> animalRepository.delete(animal));
+		if(animalToDelete.isPresent()) {
+			try {
+				animalRepository.delete(animalToDelete.get());
+			} catch (Exception e) {
+				model.addAttribute("error", e);
+				return "errorDelete";
+			}	
+		}
 		return "redirect:/animal";
 	}
 	

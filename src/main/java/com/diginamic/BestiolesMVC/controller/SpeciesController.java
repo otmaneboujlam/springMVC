@@ -71,8 +71,7 @@ public class SpeciesController {
 			} catch (Exception e) {
 				model.addAttribute("error", e);
 				return "errorDelete";
-			}
-			
+			}	
 		}
 		return "redirect:/species";
 	}

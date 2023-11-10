@@ -72,9 +72,16 @@ public class PersonController {
 	}
 	
 	@GetMapping("/delete/{id}")
-	public String deletePerson(@PathVariable("id") Integer id) {
+	public String deletePerson(@PathVariable("id") Integer id, Model model) {
 		Optional<Person> personToDelete = personRepository.findById(id);
-		personToDelete.ifPresent(person -> personRepository.delete(person));
+		if(personToDelete.isPresent()) {
+			try {
+				personRepository.delete(personToDelete.get());
+			} catch (Exception e) {
+				model.addAttribute("error", e);
+				return "errorDelete";
+			}
+		}
 		return "redirect:/person";
 	}
 	
